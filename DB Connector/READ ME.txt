@@ -1,0 +1,43 @@
+***********************************************
+* MySQLi connection API						  *
+* Author: Mathew Levasseur					  *
+* Date: October 7, 2014						  *
+***********************************************
+
+A simple MySQLi connection and query API.  Simply include the DBCON.php file into the file you want to
+use a database connection in (make sure DBPROP.php is in the same directory as DBCON.php!).  
+
+There's three methods available to connect: connect(), connect_db_name($db_name) and connect_override($host, $user, $pass, $db_name).
+In order to use connect() and connect_db_name you must first configure the DBPROP.php file.  Simply open the file and input the required information
+In the define statements where the empty '' are.  Otherwise, you're free to use the override function.
+
+The API contains a sanitization function; simply call $data = sanitize($data) to clear the string of extra whitespace, escape apostrophes and convert special HTML characters.
+Contains an option to check for SQL commans in an input string (on by default).  To turn this off, call $data = sanitize($data, false).
+
+Query($sql) is used to make a generic query on the database, returning a MySQLi result set object.  The database must be connected already, otherwise the function will return false.
+Note that the function returns a result set object ONLY, you must use the MySQLi operators to retrieve a row/column/table/value.
+
+Example use of the API:
+
+<?php
+	include('DBCON.php');  // Contains its own include() call for DBPROP.php
+
+	connect();
+
+	$user = sanitize($_POST['Username']);
+	$pass = some_hashing_algorithm($_POST['Password']);
+
+	$sql = "SELECT * FROM User WHERE Username = $user AND Password = $pass";
+
+	$result = query($sql);
+
+	$data = $result -> fetch_assoc(); // Returns an associate array
+	var_dump($data); // data = {[Username] => "Mathew", [Password] => "password123", [Age] => 21, [Sex] => "Male"}
+
+			OR
+
+	$data = $result -> fetch_row(); // Returns a numerically indexed array
+	var_dump($data); // data = {[0] => "Mathew", [1] => "password123", [2] => 21, [3] => "Male"}
+
+	close_con(); // Close the connection to the database after we're finished.
+?>
