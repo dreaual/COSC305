@@ -1,0 +1,81 @@
+
+
+body {
+	width: 100%;
+	margin: auto;
+}
+
+/* Logo is automatically aligned with the container
+*/
+.container {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+.header {
+	background: #266DB6;
+	width: 100%;
+	top 0;
+	position: fixed;
+}
+
+.logo {
+	float: left;
+	font-family: serif;
+	font-size: 25px;
+
+}
+
+ul#level-two{
+	list-style: none;
+	background: #266DB6;
+	display: none;
+	position:fixed;
+	top:90px;
+	padding: 0;
+	width:150px;
+	height:180px;
+	border:0px solid blue;
+}
+
+ul#level-one li:hover > ul#level-two{
+	display: block;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+li {
+	list-style: none;
+	float: left;
+	margin-left: 15px;
+	padding-top: 5px;
+}
+
+
+ul#level-one{
+	width:90%;
+	padding-right: 3px;
+	position: ;
+	list-style: armenian;
+	line-height:36px;
+	background:#f0f0f0;
+}
+
+ul#level-one li{
+	width: 120px;
+	float: right;
+	padding-left: 10px;
+	font-weight: bold;
+	font-family: Arial;
+
+}
+
+ul#level-one li:hover{background:#f0f0f0;}
+
+ul#level-one li:hover {	display: block;}
+
+
+
